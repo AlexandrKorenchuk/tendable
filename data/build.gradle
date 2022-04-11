@@ -1,0 +1,35 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+apply from: "$project.rootDir/build_config/dependencies.gradle"
+
+android {
+    compileSdkVersion compileSdkV
+
+    defaultConfig {
+        minSdk minSdkV
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(":domain")
+
+    kapt kapt.values()
+
+    implementation daggerHilt.values()
+
+    implementation network.values()
+
+    implementation coroutines.values()
+}
