@@ -1,4 +1,4 @@
-package com.example.presentation.main
+package com.example.presentation.questions
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.presentation.BaseFragment
 import com.example.core_ui.presentation.observeEvent
 import com.example.presentation.databinding.FragmentInspectionQuizBinding
-import com.example.presentation.main.adapter.quiz.QuizAdapter
+import com.example.presentation.questions.adapter.QuestionsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,7 +21,7 @@ class InspectionQuizFragment : BaseFragment() {
 
     private val viewModel: InspectionQuizViewModel by viewModels()
 
-    private val adapter = QuizAdapter()
+    private val adapter = QuestionsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

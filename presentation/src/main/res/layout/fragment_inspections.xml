@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f2f2f2"
-    tools:context=".main.SavedInspectionFragment">
+    tools:context=".inspections.InspectionsFragment">
 
     <Button
         android:id="@+id/btnStart"
@@ -72,7 +72,6 @@
         app:title="Tendable"
         app:titleTextColor="#000000" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSavedInspections"
         android:layout_width="match_parent"
@@ -95,5 +94,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rvSavedInspections"
         app:layout_constraintVertical_bias="0.023" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

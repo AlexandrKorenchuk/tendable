@@ -1,4 +1,4 @@
-package com.example.presentation.main
+package com.example.presentation.inspections
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,18 +8,18 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.presentation.BaseFragment
 import com.example.core_ui.presentation.observeEvent
-import com.example.presentation.databinding.FragmentSavedInspectionBinding
-import com.example.presentation.main.adapter.saved.SavedAdapter
-import com.example.presentation.main.adapter.saved.listener.ItemClickListener
+import com.example.presentation.databinding.FragmentInspectionsBinding
+import com.example.presentation.inspections.adapter.SavedAdapter
+import com.example.presentation.inspections.adapter.ItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SavedInspectionFragment : BaseFragment(), ItemClickListener {
+class InspectionsFragment : BaseFragment(), ItemClickListener {
 
-    private var _binding: FragmentSavedInspectionBinding? = null
+    private var _binding: FragmentInspectionsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SavedInspectionViewModel by viewModels()
+    private val viewModel: InspectionsViewModel by viewModels()
 
     private val adapter = SavedAdapter(this)
 
@@ -27,7 +27,7 @@ class SavedInspectionFragment : BaseFragment(), ItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSavedInspectionBinding.inflate(inflater, container, false)
+        _binding = FragmentInspectionsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -61,11 +61,11 @@ class SavedInspectionFragment : BaseFragment(), ItemClickListener {
             }
         }
 
-        viewModel.showDialog.observeEvent(viewLifecycleOwner){
+        viewModel.showDialog.observeEvent(viewLifecycleOwner) {
             showDialog(it)
         }
 
-        viewModel.snackBarCommand.observeEvent(viewLifecycleOwner){
+        viewModel.snackBarCommand.observeEvent(viewLifecycleOwner) {
             showSnackBar(it)
         }
 

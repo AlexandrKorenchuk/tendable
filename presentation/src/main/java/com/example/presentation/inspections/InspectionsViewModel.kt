@@ -1,4 +1,4 @@
-package com.example.presentation.main
+package com.example.presentation.inspections
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SavedInspectionViewModel @Inject constructor(
+class InspectionsViewModel @Inject constructor(
     val logOutUseCase: LogOutUseCase,
     val getSavedInspectionsUseCase: GetSavedInspectionUseCase,
     val submitInspectionUseCase: SubmitInspectionUseCase,

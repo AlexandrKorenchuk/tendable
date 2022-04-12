@@ -1,12 +1,12 @@
-package com.example.presentation.main.adapter.quiz
+package com.example.presentation.questions.adapter
 
 import android.view.ViewGroup
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemQuizInspectionBinding
-import com.example.presentation.main.adapter.utils.BaseViewHolder
+import com.example.presentation.utils.BaseViewHolder
 import com.release.domain.model.InspectionQuizItem
 
-class QuizViewHolder(
+class QuestionViewHolder(
     parent: ViewGroup
 ) : BaseViewHolder(parent, R.layout.item_quiz_inspection) {
 

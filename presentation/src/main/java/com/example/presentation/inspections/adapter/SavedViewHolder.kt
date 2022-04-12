@@ -1,10 +1,9 @@
-package com.example.presentation.main.adapter.saved
+package com.example.presentation.inspections.adapter
 
 import android.view.ViewGroup
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemSavedInspectionBinding
-import com.example.presentation.main.adapter.saved.listener.ItemClickListener
-import com.example.presentation.main.adapter.utils.BaseViewHolder
+import com.example.presentation.utils.BaseViewHolder
 import com.release.domain.model.InspectionQuizItem
 
 class SavedViewHolder(
