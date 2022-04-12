@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemQuestionBinding
 import com.example.presentation.utils.BaseViewHolder
-import com.release.domain.model.InspectionQuizItem
+import com.release.domain.model.InspectionItem
 
 class QuestionViewHolder(
     parent: ViewGroup
@@ -12,9 +12,9 @@ class QuestionViewHolder(
 
     private val viewBinding = ItemQuestionBinding.bind(itemView)
 
-    private lateinit var inspectionQuizItems: InspectionQuizItem
+    private lateinit var inspectionItems: InspectionItem
 
-    fun bind(inspectionQuizItems: InspectionQuizItem) {
-        this.inspectionQuizItems = inspectionQuizItems
+    fun bind(inspectionItems: InspectionItem) {
+        this.inspectionItems = inspectionItems
     }
 }

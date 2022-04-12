@@ -4,10 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.release.core_ui.presentation.BaseViewModel
-import com.release.domain.model.InspectionQuizItem
+import com.release.domain.model.InspectionItem
 import com.release.domain.usecase.None
 import com.release.domain.usecase.inspection.GetSavedInspectionUseCase
-import com.release.domain.usecase.inspection.RequestStartInspectionUseCase
 import com.release.domain.utils.AppException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,8 +17,8 @@ class QuestionsViewModel @Inject constructor(
     val getSavedInspectionsUseCase: GetSavedInspectionUseCase
 ) : BaseViewModel() {
 
-    private val _items = MutableLiveData<List<InspectionQuizItem>>()
-    val items: LiveData<List<InspectionQuizItem>>
+    private val _items = MutableLiveData<List<InspectionItem>>()
+    val items: LiveData<List<InspectionItem>>
         get() = _items
 
     init {

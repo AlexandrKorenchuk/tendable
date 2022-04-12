@@ -1,17 +1,18 @@
 package com.release.domain.usecase.inspection
 
-import com.release.domain.model.InspectionQuizItem
+import com.release.domain.model.InspectionItem
 import com.release.domain.repositories.AuthRepository
+import com.release.domain.repositories.InspectionsRepository
 import com.release.domain.usecase.UseCase
 import javax.inject.Inject
 
 class SubmitInspectionUseCase @Inject constructor(
-    private val authRepository: AuthRepository
+    private val inspectionsRepository: InspectionsRepository
 ) : UseCase<Unit, SubmitInspectionUseCase.Params>() {
 
     override suspend fun execute(params: Params) {
-        authRepository.submitInspection(params.inspectionQuizItem)
+        inspectionsRepository.submitInspection(params.inspectionItem)
     }
 
-    data class Params(val inspectionQuizItem: List<InspectionQuizItem>)
+    data class Params(val inspectionItem: List<InspectionItem>)
 }

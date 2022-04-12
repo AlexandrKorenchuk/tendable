@@ -8,6 +8,7 @@
     <string name="type">Type:</string>
     <string name="area">Area:</string>
     <string name="access">Access:</string>
+    <string name="inspection">Inspection</string>
     <string name="continue_inspection">Continue</string>
     <string name="no_inspections">You currently have no active inspections.\n\nPress the start button to create a new inspection</string>
 </resources>

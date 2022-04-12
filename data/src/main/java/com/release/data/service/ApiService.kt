@@ -1,7 +1,7 @@
 package com.release.data.service
 
-import com.release.data.model.StartResponse
 import com.release.data.model.LoginBody
+import com.release.data.model.StartResponse
 import com.release.data.model.SubmitBody
 import retrofit2.http.Body
 import retrofit2.http.GET

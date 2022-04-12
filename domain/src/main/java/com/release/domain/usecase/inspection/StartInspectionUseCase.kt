@@ -7,11 +7,11 @@ import com.release.domain.usecase.None
 import com.release.domain.usecase.UseCase
 import javax.inject.Inject
 
-class GetSavedInspectionUseCase @Inject constructor(
+class StartInspectionUseCase @Inject constructor(
     private val inspectionsRepository: InspectionsRepository
 ) : UseCase<List<InspectionItem>, None>() {
 
-    override suspend fun execute(params: None) : List<InspectionItem> {
-        return inspectionsRepository.getSavedInspectionsQuiz()
+    override suspend fun execute(params: None): List<InspectionItem> {
+        return inspectionsRepository.startInspection()
     }
 }

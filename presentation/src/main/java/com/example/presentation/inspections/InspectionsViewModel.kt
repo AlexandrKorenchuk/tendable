@@ -8,11 +8,11 @@ import com.example.presentation.R
 import com.release.core_ui.presentation.BaseViewModel
 import com.release.core_ui.utilis.Event
 import com.example.core_ui.utilis.ShowDialog
-import com.release.domain.model.InspectionQuizItem
+import com.release.domain.model.InspectionItem
 import com.release.domain.usecase.None
 import com.release.domain.usecase.auth.LogOutUseCase
 import com.release.domain.usecase.inspection.GetSavedInspectionUseCase
-import com.release.domain.usecase.inspection.RequestStartInspectionUseCase
+import com.release.domain.usecase.inspection.StartInspectionUseCase
 import com.release.domain.usecase.inspection.SubmitInspectionUseCase
 import com.release.domain.utils.AppException
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,11 +24,11 @@ class InspectionsViewModel @Inject constructor(
     val logOutUseCase: LogOutUseCase,
     val getSavedInspectionsUseCase: GetSavedInspectionUseCase,
     val submitInspectionUseCase: SubmitInspectionUseCase,
-    val requestStartInspectionUseCase: RequestStartInspectionUseCase
+    val requestStartInspectionUseCase: StartInspectionUseCase
 ) : BaseViewModel() {
 
-    private val _items = MutableLiveData<List<InspectionQuizItem>>()
-    val items: LiveData<List<InspectionQuizItem>>
+    private val _items = MutableLiveData<List<InspectionItem>>()
+    val items: LiveData<List<InspectionItem>>
         get() = _items
 
     init {
