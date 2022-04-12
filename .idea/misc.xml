@@ -8,6 +8,11 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/tendable/core-ui/src/main/res/drawable/edittext_oval.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/tendable/core-ui/src/main/res/drawable/item_color.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/tendable/core-ui/src/main/res/drawable/mainbutton_oval.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/tendable/presentation/src/main/res/layout/fragment_inspection_quiz.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/tendable/presentation/src/main/res/layout/fragment_login.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/tendable/presentation/src/main/res/layout/fragment_saved_inspection.xml" value="0.19574468085106383" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/tendable/presentation/src/main/res/layout/item_quiz_inspection.xml" value="0.22149837133550487" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/tendable/presentation/src/main/res/layout/item_saved_inspection.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
