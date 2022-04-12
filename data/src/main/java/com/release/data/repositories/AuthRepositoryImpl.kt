@@ -19,7 +19,7 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun login(email: String, password: String) {
         val body = LoginBody(email, password)
         safeApiCall.apiCall {
-            apiService.login(body)
+           // apiService.login(body)
             appPrefs.setEnteredKey(true)
         }
     }
@@ -33,7 +33,15 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getSavedInspectionsQuiz(): List<InspectionQuizItem> {
-        return listOf(InspectionQuizItem(1, "Clinic", "Emergency", "Write", "2/10"))
+    return emptyList()
+        // if you return emty list
+        //it means that no data stored in database
+        //so you will have start button ans start method call
+        //after clicking on it
+        //if database not empty you will have
+        //submit button.
+        //so at first make start method.
+    //   return listOf(InspectionQuizItem(1, "Clinic", "Emergency", "Write", "2/10"))
     }
 
     override suspend fun startInspection(): List<InspectionQuizItem> {
