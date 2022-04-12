@@ -26,3 +26,5 @@ rootProject.name = "Tendable"
 include ':app'
 include ':data'
 include ':domain'
+include ':core-ui'
+include ':core'

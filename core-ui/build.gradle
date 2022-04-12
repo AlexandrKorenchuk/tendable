@@ -9,6 +9,7 @@ apply from: "$project.rootDir/build_config/dependencies.gradle"
 
 android {
     compileSdkVersion compileSdkV
+    buildToolsVersion buildToolsV
 
     defaultConfig {
         minSdk minSdkV
@@ -27,14 +28,15 @@ android {
 }
 
 dependencies {
-    implementation project(":core-ui")
     implementation project(":domain")
 
     kapt kapt.values()
 
+    implementation androidX.values()
+
     implementation daggerHilt.values()
 
-    implementation network.values()
+    implementation google.values()
 
-    implementation coroutines.values()
+    implementation navComp.values()
 }
