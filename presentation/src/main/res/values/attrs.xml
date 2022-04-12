@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorStrokeButton" format="color" />
+    <attr name="colorText" format="color" />
+    <attr name="colorLineToolbar" format="color"/>
+    <attr name="colorCardBackground" format="color"/>
+    <attr name="colorCardStroke" format="color"/>
+</resources>

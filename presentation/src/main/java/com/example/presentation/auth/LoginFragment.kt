@@ -31,8 +31,8 @@ class LoginFragment : BaseFragment() {
 
         binding.btnLogin.setOnClickListener {
             viewModel.onLoginButtonClicked(
-                binding.email.text.toString(),
-                binding.password.text.toString()
+                binding.etEmail.text.toString(),
+                binding.etPassword.text.toString()
             )
         }
 

@@ -12,7 +12,7 @@ ext {
     material = '1.4.0'
     navComp = '2.3.5'
     legacy = '1.0.0'
-    materialComponents = '1.4.0'
+    materialComponents = '1.5.0'
 
     rxAndroid = '2.1.1'
     retrofit = '2.7.1'
@@ -38,7 +38,6 @@ ext {
 
     google = [
             design             : "com.google.android.material:material:$material"
-
     ]
 
     network = [

@@ -1,4 +1,4 @@
-package com.example.presentation.main.adapter.saved.listener
+package com.example.presentation.inspections.adapter
 
 interface ItemClickListener {
     fun onContinueSavedInspectionClicked(id: Int)

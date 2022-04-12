@@ -1,4 +1,4 @@
-package com.example.presentation.main.adapter.utils;
+package com.example.presentation.utils;
 
 import java.util.List;
 

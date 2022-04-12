@@ -1,4 +1,4 @@
-package com.example.presentation.main.adapter.utils;
+package com.example.presentation.utils;
 
 public interface ContentCheckFunction<T> {
 

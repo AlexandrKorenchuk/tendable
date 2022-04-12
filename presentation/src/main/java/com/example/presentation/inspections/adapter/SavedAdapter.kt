@@ -1,9 +1,8 @@
-package com.example.presentation.main.adapter.saved
+package com.example.presentation.inspections.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.example.presentation.main.adapter.saved.listener.ItemClickListener
-import com.example.presentation.main.adapter.utils.SimpleDiffItemCallback
+import com.example.presentation.utils.SimpleDiffItemCallback
 import com.release.domain.model.InspectionQuizItem
 
 class SavedAdapter(

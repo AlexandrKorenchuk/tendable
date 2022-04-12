@@ -6,18 +6,18 @@
     app:startDestination="@id/savedInspectionFragment">
     <fragment
         android:id="@+id/savedInspectionFragment"
-        android:name="com.example.presentation.main.SavedInspectionFragment"
+        android:name="com.example.presentation.inspections.InspectionsFragment"
         android:label="fragment_saved_inspection"
-        tools:layout="@layout/fragment_saved_inspection" >
+        tools:layout="@layout/fragment_inspections" >
         <action
             android:id="@+id/action_savedInspectionFragment_to_inspectionQuizFragment"
             app:destination="@id/inspectionQuizFragment" />
     </fragment>
     <fragment
         android:id="@+id/inspectionQuizFragment"
-        android:name="com.example.presentation.main.InspectionQuizFragment"
+        android:name="com.example.presentation.questions.QuestionsFragment"
         android:label="fragment_inspection_quiz"
-        tools:layout="@layout/fragment_inspection_quiz" >
+        tools:layout="@layout/fragment_questions" >
         <action
             android:id="@+id/action_inspectionQuizFragment_to_savedInspectionFragment"
             app:destination="@id/savedInspectionFragment" />
