@@ -6,11 +6,13 @@ import com.release.domain.usecase.None
 import com.release.domain.usecase.UseCase
 import javax.inject.Inject
 
-class SaveInspectionQuizUseCase @Inject constructor(
+class UpdateSavedInspectionQuizUseCase @Inject constructor(
     private val authRepository: AuthRepository
-) : UseCase<List<InspectionQuizItem>, None>() {
+) : UseCase<Boolean, UpdateSavedInspectionQuizUseCase.Params>() {
 
-    override suspend fun execute(params: None): List<InspectionQuizItem> {
-        return authRepository.saveInspectionQuiz()
+    override suspend fun execute(params: Params): Boolean{
+        return authRepository.updateSavedInspectionQuiz(params.id)
     }
+
+    data class Params(val id: Int)
 }

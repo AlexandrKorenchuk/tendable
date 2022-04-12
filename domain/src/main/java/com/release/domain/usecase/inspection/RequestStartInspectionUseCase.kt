@@ -6,11 +6,11 @@ import com.release.domain.usecase.None
 import com.release.domain.usecase.UseCase
 import javax.inject.Inject
 
-class GetInspectionQuizUseCase @Inject constructor(
+class RequestStartInspectionUseCase @Inject constructor(
     private val authRepository: AuthRepository
 ) : UseCase<List<InspectionQuizItem>, None>() {
 
     override suspend fun execute(params: None): List<InspectionQuizItem> {
-        return authRepository.getInspectionQuiz()
+        return authRepository.startInspection()
     }
 }

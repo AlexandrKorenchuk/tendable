@@ -61,6 +61,14 @@ class SavedInspectionFragment : BaseFragment(), ItemClickListener {
             }
         }
 
+        viewModel.showDialog.observeEvent(viewLifecycleOwner){
+            showDialog(it)
+        }
+
+        viewModel.snackBarCommand.observeEvent(viewLifecycleOwner){
+            showSnackBar(it)
+        }
+
         viewModel.navigationEvent.observeEvent(viewLifecycleOwner) {
             navigate(it)
         }

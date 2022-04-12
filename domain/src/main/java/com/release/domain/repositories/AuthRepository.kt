@@ -1,6 +1,5 @@
 package com.release.domain.repositories
 
-import com.release.domain.model.InspectionItems
 import com.release.domain.model.InspectionQuizItem
 
 interface AuthRepository {
@@ -11,9 +10,11 @@ interface AuthRepository {
 
     suspend fun getUserEnteredKey(): Boolean
 
-    suspend fun getSavedInspections(): List<InspectionItems>
+    suspend fun getSavedInspectionsQuiz(): List<InspectionQuizItem>
 
-    suspend fun getInspectionQuiz(): List<InspectionQuizItem>
+    suspend fun startInspection(): List<InspectionQuizItem>
 
-    suspend fun saveInspectionQuiz(): List<InspectionQuizItem>
+    suspend fun submitInspection(inspectionQuizItem: List<InspectionQuizItem>)
+
+    suspend fun updateSavedInspectionQuiz(id: Int): Boolean
 }

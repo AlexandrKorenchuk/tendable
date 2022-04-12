@@ -13,7 +13,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
-    private val baseURL = "https://alfabank.ru/_/rss/"
+    private val baseURL = "http://localhost:5001/api/"
 
     @Provides
     @Singleton

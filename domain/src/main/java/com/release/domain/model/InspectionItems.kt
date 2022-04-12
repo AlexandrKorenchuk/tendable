@@ -1,9 +1,0 @@
-package com.release.domain.model
-
-class InspectionItems(
-    val id: Int,
-    val type: String,
-    val area: String,
-    val access: String,
-    val questions: String,
-)
