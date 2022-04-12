@@ -10,7 +10,7 @@ pluginManagement {
                 useModule("com.google.dagger:hilt-android-gradle-plugin:2.39.1")
             }
             if( requested.id.id == 'realm-android') {
-                useModule("io.realm:realm-gradle-plugin:2.0.2")
+                useModule("io.realm:realm-gradle-plugin:10.9.0")
             }
         }
     }
