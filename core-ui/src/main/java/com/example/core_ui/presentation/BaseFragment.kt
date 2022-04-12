@@ -1,4 +1,4 @@
-package com.release.core_ui.presentation
+package com.example.core_ui.presentation
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -11,7 +11,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.release.core_ui.utilis.DisplayDensity
-import com.release.core_ui.utilis.NavigationEvent
+import com.example.core_ui.utilis.NavigationEvent
 import com.release.core_ui.utilis.ShowDialog
 import com.release.core_ui.utilis.SnackbarCustom
 import javax.inject.Inject

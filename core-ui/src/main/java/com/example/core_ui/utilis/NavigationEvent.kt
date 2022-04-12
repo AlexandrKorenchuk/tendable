@@ -1,4 +1,4 @@
-package com.release.core_ui.utilis
+package com.example.core_ui.utilis
 
 sealed class NavigationEvent {
 
