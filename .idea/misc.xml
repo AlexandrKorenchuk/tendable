@@ -13,8 +13,10 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/tendable/presentation/src/main/res/layout/fragment_saved_inspection.xml" value="0.19574468085106383" />
         <entry key="..\:/Users/user/AndroidStudioProjects/tendable/presentation/src/main/res/layout/item_quiz_inspection.xml" value="0.22149837133550487" />
         <entry key="..\:/Users/user/AndroidStudioProjects/tendable/presentation/src/main/res/layout/item_saved_inspection.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3183876811594203" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.1" />
         <entry key="app/src/main/res/xml/xml.xml" value="0.1" />
+        <entry key="presentation/src/main/res/layout/fragment_login.xml" value="0.3183876811594203" />
       </map>
     </option>
   </component>

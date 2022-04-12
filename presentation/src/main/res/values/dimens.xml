@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="width_stroke">1dp</dimen>
+    <dimen name="width_input_layout">260dp</dimen>
+    <dimen name="text_size_button">14sp</dimen>
+    <dimen name="text_size_title">24sp</dimen>
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="width_button">160dp</dimen>
+    <dimen name="corner_radius_button">100dp</dimen>
+</resources>
