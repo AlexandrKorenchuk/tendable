@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.presentation.BaseFragment
+import com.example.core_ui.presentation.observeEvent
 import com.example.presentation.databinding.FragmentInspectionQuizBinding
 import com.example.presentation.main.adapter.quiz.QuizAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,6 +43,10 @@ class InspectionQuizFragment : BaseFragment() {
 
         binding.ivBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        viewModel.showDialog.observeEvent(viewLifecycleOwner){
+            showDialog(it)
         }
     }
 

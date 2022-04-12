@@ -16,6 +16,6 @@ class QuizViewHolder(
 
     fun bind(inspectionQuizItems: InspectionQuizItem) {
         this.inspectionQuizItems = inspectionQuizItems
-        viewBinding.question.text = inspectionQuizItems.question
+        viewBinding.question.text = inspectionQuizItems.questions
     }
 }

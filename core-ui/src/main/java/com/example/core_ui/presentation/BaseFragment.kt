@@ -2,9 +2,7 @@ package com.example.core_ui.presentation
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.graphics.Color
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
@@ -12,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.release.core_ui.utilis.DisplayDensity
 import com.example.core_ui.utilis.NavigationEvent
-import com.release.core_ui.utilis.ShowDialog
+import com.example.core_ui.utilis.ShowDialog
 import com.release.core_ui.utilis.SnackbarCustom
 import javax.inject.Inject
 
@@ -36,34 +34,18 @@ open class BaseFragment : Fragment() {
                     Snackbar.make(
                         requireActivity().findViewById(android.R.id.content),
                         snackBarEvent.success,
-                        100
+                        1000
                     )
-                snackBar.apply {
-                    view.setBackgroundColor(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            Color.parseColor("#24A174")
-                        )
-                    )
-                    show()
-                }
+                snackBar.show()
             }
             is SnackbarCustom.Error -> {
                 snackBar =
                     Snackbar.make(
                         requireActivity().findViewById(android.R.id.content),
                         snackBarEvent.error,
-                        100
+                        1000
                     )
-                snackBar.apply {
-                    view.setBackgroundColor(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            Color.parseColor("#DB405B")
-                        )
-                    )
-                    show()
-                }
+                snackBar.show()
             }
         }
     }
@@ -71,6 +53,13 @@ open class BaseFragment : Fragment() {
     fun showDialog(showDialogEvent: ShowDialog) {
         when (showDialogEvent) {
             is ShowDialog.ExceptionDialog -> {
+                val dialogBuilder = AlertDialog.Builder(requireContext())
+                dialogBuilder.setMessage(showDialogEvent.content)
+                dialogBuilder.setCancelable(false)
+                val alert = dialogBuilder.create()
+                alert.show()
+            }
+            is ShowDialog.SuccessDialog -> {
                 val dialogBuilder = AlertDialog.Builder(requireContext())
                 dialogBuilder.setMessage(showDialogEvent.content)
                 dialogBuilder.setCancelable(false)

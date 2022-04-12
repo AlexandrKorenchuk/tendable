@@ -2,5 +2,8 @@ package com.release.domain.model
 
 class InspectionQuizItem(
     val id: Int,
-    val question: String
+    val type: String?="",
+    val area: String?="",
+    val access: String?="",
+    val questions: String?="",
 )

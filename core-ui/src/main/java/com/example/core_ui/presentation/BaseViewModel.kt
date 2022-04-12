@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.release.core_ui.utilis.Event
 import com.example.core_ui.utilis.NavigationEvent
-import com.release.core_ui.utilis.ShowDialog
+import com.example.core_ui.utilis.ShowDialog
 import com.release.core_ui.utilis.SnackbarCustom
 import com.release.domain.utils.AppException
 import com.release.domain.utils.NoInternetException

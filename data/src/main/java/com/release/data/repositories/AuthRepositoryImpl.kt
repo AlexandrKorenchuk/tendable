@@ -1,9 +1,11 @@
 package com.release.data.repositories
 
+import android.util.Log
+import com.release.data.model.LoginBody
+import com.release.data.model.SubmitBody
 import com.release.data.prefs.AppPrefs
 import com.release.data.service.ApiService
 import com.release.data.utils.SafeApiCall
-import com.release.domain.model.InspectionItems
 import com.release.domain.model.InspectionQuizItem
 import com.release.domain.repositories.AuthRepository
 import javax.inject.Inject
@@ -14,14 +16,12 @@ class AuthRepositoryImpl @Inject constructor(
     private val safeApiCall: SafeApiCall
 ) : AuthRepository {
 
-    override suspend fun login(password: String, userName: String) {
-//        safeApiCall.apiCall {
-//            apiService.login(
-//                password,
-//                userName
-//            )
-//        }
-        appPrefs.setEnteredKey(true)
+    override suspend fun login(email: String, password: String) {
+        val body = LoginBody(email, password)
+        safeApiCall.apiCall {
+            apiService.login(body)
+            appPrefs.setEnteredKey(true)
+        }
     }
 
     override suspend fun logout() {
@@ -32,23 +32,24 @@ class AuthRepositoryImpl @Inject constructor(
         return appPrefs.getEnteredKey()
     }
 
-    override suspend fun getSavedInspections(): List<InspectionItems> {
-        return listOf(InspectionItems(1, "Clinic", "Emergency", "Write", "2/10"))
+    override suspend fun getSavedInspectionsQuiz(): List<InspectionQuizItem> {
+        return listOf(InspectionQuizItem(1, "Clinic", "Emergency", "Write", "2/10"))
     }
 
-    override suspend fun getInspectionQuiz(): List<InspectionQuizItem> {
-        //        safeApiCall.apiCall { from network
-//            apiService.login(
-//                password,
-//                userName
-//            )
-//        }
-        //save response in database
+    override suspend fun startInspection(): List<InspectionQuizItem> {
+       val response = safeApiCall.apiCall { apiService.start() }
+        Log.w("repoimpl", response.inspection.survey.categories.questions.answerChoices.name)
+        //TODO save whole quiz in database
         return listOf(InspectionQuizItem(1, "Is the drug trolly locked?"))
     }
 
-    override suspend fun saveInspectionQuiz(): List<InspectionQuizItem> {
-        //update quiz in db
-        return emptyList()
+    override suspend fun submitInspection(inspectionQuizItem: List<InspectionQuizItem>) {
+        val body = SubmitBody(inspectionQuizItem)
+        safeApiCall.apiCall { apiService.submit(body) }
+    }
+
+    override suspend fun updateSavedInspectionQuiz(id: Int): Boolean {
+        //TODO update quiz in db
+        return true
     }
 }

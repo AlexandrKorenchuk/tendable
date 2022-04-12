@@ -7,10 +7,13 @@ import com.example.core_ui.utilis.NavigationEvent
 import com.example.presentation.R
 import com.release.core_ui.presentation.BaseViewModel
 import com.release.core_ui.utilis.Event
-import com.release.domain.model.InspectionItems
+import com.example.core_ui.utilis.ShowDialog
+import com.release.domain.model.InspectionQuizItem
 import com.release.domain.usecase.None
 import com.release.domain.usecase.auth.LogOutUseCase
 import com.release.domain.usecase.inspection.GetSavedInspectionUseCase
+import com.release.domain.usecase.inspection.RequestStartInspectionUseCase
+import com.release.domain.usecase.inspection.SubmitInspectionUseCase
 import com.release.domain.utils.AppException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,17 +22,19 @@ import javax.inject.Inject
 @HiltViewModel
 class SavedInspectionViewModel @Inject constructor(
     val logOutUseCase: LogOutUseCase,
-    val inspectionsUseCaseGetSaved: GetSavedInspectionUseCase
+    val getSavedInspectionsUseCase: GetSavedInspectionUseCase,
+    val submitInspectionUseCase: SubmitInspectionUseCase,
+    val requestStartInspectionUseCase: RequestStartInspectionUseCase
 ) : BaseViewModel() {
 
-    private val _items = MutableLiveData<List<InspectionItems>>()
-    val items: LiveData<List<InspectionItems>>
+    private val _items = MutableLiveData<List<InspectionQuizItem>>()
+    val items: LiveData<List<InspectionQuizItem>>
         get() = _items
 
     init {
         viewModelScope.launch(handler) {
             try {
-                val inspectionsUseCase = inspectionsUseCaseGetSaved.execute(None)
+                val inspectionsUseCase = getSavedInspectionsUseCase.execute(None)
                 _items.value = inspectionsUseCase
             } catch (e: AppException) {
                 catchUseCaseException(e)
@@ -38,16 +43,29 @@ class SavedInspectionViewModel @Inject constructor(
     }
 
     fun onStartButtonClicked() {
-        _navigationEvent.value =
-            Event(NavigationEvent.Forward(R.id.action_savedInspectionFragment_to_inspectionQuizFragment))
+        viewModelScope.launch(handler) {
+            try {
+                requestStartInspectionUseCase.execute(None)
+                _navigationEvent.value =
+                    Event(NavigationEvent.Forward(R.id.action_savedInspectionFragment_to_inspectionQuizFragment))
+            } catch (e: AppException) {
+                catchException(e)
+            }
+        }
     }
 
     fun onSubmitButtonClicked() {
-        //TODO here must be server called and data sent and not displaying new screen.
-        // it's just for now
-        _navigationEvent.value =
-            Event(NavigationEvent.Forward(R.id.action_savedInspectionFragment_to_inspectionQuizFragment))
-
+        viewModelScope.launch(handler) {
+            try {
+                val submitItems = items.value
+                if (submitItems != null) {
+                    submitInspectionUseCase.execute(SubmitInspectionUseCase.Params(submitItems))
+                    _showDialog.value = Event(ShowDialog.SuccessDialog("successfully submitted"))
+                }
+            } catch (e: AppException) {
+                catchException(e)
+            }
+        }
     }
 
     fun onContinueButtonClicked(id: Int) {

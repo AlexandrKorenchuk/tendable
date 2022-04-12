@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.presentation.databinding.FragmentLoginBinding
 import com.example.core_ui.presentation.BaseFragment
+import com.example.core_ui.presentation.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,6 +34,10 @@ class LoginFragment : BaseFragment() {
                 binding.email.text.toString(),
                 binding.password.text.toString()
             )
+        }
+
+        viewModel.showDialog.observeEvent(viewLifecycleOwner){
+            showDialog(it)
         }
 
         viewModel.navigationEvent.observe(viewLifecycleOwner) {
