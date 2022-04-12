@@ -1,0 +1,66 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+apply from: "$project.rootDir/build_config/dependencies.gradle"
+
+android {
+    compileSdkVersion compileSdkV
+
+    defaultConfig {
+        minSdk minSdkV
+        targetSdkVersion targetSdkV
+        versionCode versionCodeNum
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildFeatures {
+        buildConfig = true
+        viewBinding true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    implementation project(":domain")
+    implementation project(":data")
+    implementation project(":core-ui")
+
+    kapt kapt.values()
+
+    implementation androidX.values()
+
+    implementation daggerHilt.values()
+
+    implementation network.values()
+
+    implementation navComp.values()
+
+    implementation coroutines.values()
+}
