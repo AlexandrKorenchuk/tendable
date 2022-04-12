@@ -1,97 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2"
     tools:context=".inspections.InspectionsFragment">
 
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/ic_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/btn_logout"
+        style="@style/Tendable.TextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/logout"
+        app:layout_constraintBottom_toTopOf="@id/underline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/underline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:background="?colorLineToolbar"
+        app:layout_constraintTop_toBottomOf="@id/iv_logo" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_start"
+        style="@style/Tendable.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:backgroundTint="#000000"
-        android:text="START"
-        android:textColor="#ffffff"
-        android:visibility="gone"
+        android:text="@string/start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNoStoredInspections" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvNoStoredInspections"
+        style="@style/Tendable.TextView.Subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
-        android:layout_marginTop="204dp"
+        android:layout_margin="48dp"
+        android:layout_marginTop="68dp"
         android:gravity="center"
-        android:text="no inspection saved, press button to start new"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/no_inspections"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.172" />
-
-    <TextView
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:elevation="1dp"
-        android:text="Logout"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.354" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#ffffff"
-        android:paddingLeft="20dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:title="Tendable"
-        app:titleTextColor="#000000" />
+        app:layout_constraintTop_toBottomOf="@+id/underline" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSavedInspections"
+        android:id="@+id/rv_saved_inspections"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/underline" />
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="match_parent"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_submit"
+        style="@style/Tendable.TextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
-        android:backgroundTint="#000000"
-        android:text="Submit"
-        android:textColor="#ffffff"
+        android:text="@string/submit"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvSavedInspections"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toBottomOf="@id/rv_saved_inspections" />
 </androidx.constraintlayout.widget.ConstraintLayout>

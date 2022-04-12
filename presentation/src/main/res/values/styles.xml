@@ -21,6 +21,14 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Tendable.TextView.Subtitle" parent="Tendable.TextView">
+        <item name="android:textSize">@dimen/text_size_subtitle</item>
+    </style>
+
+    <style name="Tendable.TextView.Subtitle.Bold" parent="Tendable.TextView.Subtitle">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Tendable.InputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:textSize">@dimen/text_size</item>
         <item name="android:layout_width">@dimen/width_input_layout</item>

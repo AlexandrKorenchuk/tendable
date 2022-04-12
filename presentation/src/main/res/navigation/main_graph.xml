@@ -15,9 +15,9 @@
     </fragment>
     <fragment
         android:id="@+id/inspectionQuizFragment"
-        android:name="com.example.presentation.questions.InspectionQuizFragment"
+        android:name="com.example.presentation.questions.QuestionsFragment"
         android:label="fragment_inspection_quiz"
-        tools:layout="@layout/fragment_inspection_quiz" >
+        tools:layout="@layout/fragment_questions" >
         <action
             android:id="@+id/action_inspectionQuizFragment_to_savedInspectionFragment"
             app:destination="@id/savedInspectionFragment" />

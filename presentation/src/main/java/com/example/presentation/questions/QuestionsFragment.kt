@@ -9,17 +9,17 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.presentation.BaseFragment
 import com.example.core_ui.presentation.observeEvent
-import com.example.presentation.databinding.FragmentInspectionQuizBinding
+import com.example.presentation.databinding.FragmentQuestionsBinding
 import com.example.presentation.questions.adapter.QuestionsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class InspectionQuizFragment : BaseFragment() {
+class QuestionsFragment : BaseFragment() {
 
-    private var _binding: FragmentInspectionQuizBinding? = null
+    private var _binding: FragmentQuestionsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: InspectionQuizViewModel by viewModels()
+    private val viewModel: QuestionsViewModel by viewModels()
 
     private val adapter = QuestionsAdapter()
 
@@ -27,7 +27,7 @@ class InspectionQuizFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentInspectionQuizBinding.inflate(inflater, container, false)
+        _binding = FragmentQuestionsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,7 +45,7 @@ class InspectionQuizFragment : BaseFragment() {
             findNavController().popBackStack()
         }
 
-        viewModel.showDialog.observeEvent(viewLifecycleOwner){
+        viewModel.showDialog.observeEvent(viewLifecycleOwner) {
             showDialog(it)
         }
     }
