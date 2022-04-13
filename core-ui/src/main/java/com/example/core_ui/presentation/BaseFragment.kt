@@ -55,14 +55,14 @@ open class BaseFragment : Fragment() {
             is ShowDialog.ExceptionDialog -> {
                 val dialogBuilder = AlertDialog.Builder(requireContext())
                 dialogBuilder.setMessage(showDialogEvent.content)
-                dialogBuilder.setCancelable(false)
+                dialogBuilder.setCancelable(true)
                 val alert = dialogBuilder.create()
                 alert.show()
             }
             is ShowDialog.SuccessDialog -> {
                 val dialogBuilder = AlertDialog.Builder(requireContext())
                 dialogBuilder.setMessage(showDialogEvent.content)
-                dialogBuilder.setCancelable(false)
+                dialogBuilder.setCancelable(true)
                 val alert = dialogBuilder.create()
                 alert.show()
             }
@@ -85,7 +85,7 @@ open class BaseFragment : Fragment() {
             }
             is NavigationEvent.ForwardWithBundle -> {
                 val bundle = bundleOf(
-                    "from" to navigationEvent.from
+                    "bundle" to navigationEvent.bundle
                 )
                 navigateBundle(navigationEvent.navigate, bundle)
             }

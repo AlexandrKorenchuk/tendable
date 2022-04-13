@@ -16,7 +16,7 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun login(email: String, password: String) {
         val body = LoginBody(email, password)
         safeApiCall.apiCall {
-            // apiService.login(body)
+            apiService.login(body)
             appPrefs.setEnteredKey(true)
         }
     }

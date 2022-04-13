@@ -11,4 +11,6 @@
     <string name="inspection">Inspection</string>
     <string name="continue_inspection">Continue</string>
     <string name="no_inspections">You currently have no active inspections.\n\nPress the start button to create a new inspection</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

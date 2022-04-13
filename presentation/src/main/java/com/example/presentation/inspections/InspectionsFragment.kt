@@ -39,12 +39,10 @@ class InspectionsFragment : BaseFragment(), ItemClickListener {
         }
 
         binding.btnStart.setOnClickListener {
-            //start new
             viewModel.onStartButtonClicked()
         }
 
         binding.btnSubmit.setOnClickListener {
-            //send
             viewModel.onSubmitButtonClicked()
         }
 
@@ -55,10 +53,12 @@ class InspectionsFragment : BaseFragment(), ItemClickListener {
                 binding.rvSavedInspections.layoutManager = LinearLayoutManager(requireContext())
                 binding.rvSavedInspections.adapter = adapter
                 adapter.submitList(it)
-            } else {
-                binding.tvNoStoredInspections.visibility = View.VISIBLE
-                binding.btnStart.visibility = View.VISIBLE
             }
+        }
+
+        viewModel.visibility.observe(viewLifecycleOwner) {
+            binding.tvNoStoredInspections.visibility = it
+            binding.btnStart.visibility = it
         }
 
         viewModel.showDialog.observeEvent(viewLifecycleOwner) {
