@@ -28,10 +28,12 @@ android {
 
     buildTypes {
         release {
+            buildConfigField("String", "baseURL", "\"http://10.0.2.2:5001/api/\"")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
+            buildConfigField("String", "baseURL", "\"http://10.0.2.2:5001/api/\"")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

@@ -1,5 +1,6 @@
 package com.release.core.di
 
+import com.release.core.BuildConfig.baseURL
 import com.release.data.service.ApiService
 import dagger.Module
 import dagger.Provides
@@ -14,8 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-
-    private val baseURL = "http://10.0.2.2:5001/api/"
 
     @Provides
     @Singleton

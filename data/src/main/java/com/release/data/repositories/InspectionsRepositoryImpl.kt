@@ -10,6 +10,8 @@ import com.release.data.utils.mapper.DataUiMapper
 import com.release.domain.model.InspectionItem
 import com.release.domain.model.QuestionItem
 import com.release.domain.repositories.InspectionsRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class InspectionsRepositoryImpl @Inject constructor(
@@ -20,19 +22,25 @@ class InspectionsRepositoryImpl @Inject constructor(
 ) : InspectionsRepository {
 
     override suspend fun getSavedInspections(): List<InspectionItem> {
-        return inspectionsRealm.getInspections()
+        return withContext(Dispatchers.IO) {
+            inspectionsRealm.getInspections()
+        }
     }
 
     override suspend fun startInspection(): List<InspectionItem> {
-        val response = safeApiCall.apiCall { apiService.start() }
-        inspectionsRealm.insertInspection(response.inspection)
-        Log.w("id", response.inspection.id.toString())
-        return listOf(inspectionMapper.mapDataToUi(response))
+        return withContext(Dispatchers.IO) {
+            val response = safeApiCall.apiCall { apiService.start() }
+            inspectionsRealm.insertInspection(response.inspection)
+            Log.w("id", response.inspection.id.toString())
+            listOf(inspectionMapper.mapDataToUi(response))
+        }
     }
 
     override suspend fun submitInspection(inspectionItem: List<InspectionItem>) {
-        val body = SubmitBody(inspectionItem)
-        safeApiCall.apiCall { apiService.submit(body) }
+        withContext(Dispatchers.IO) {
+            val body = SubmitBody(inspectionItem)
+            safeApiCall.apiCall { apiService.submit(body) }
+        }
     }
 
     override suspend fun updateQuestionAnswer(id: Int): Boolean {
@@ -41,6 +49,8 @@ class InspectionsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getQuestionsById(inspectionId: Int): List<QuestionItem> {
-        return inspectionsRealm.getQuestions(inspectionId)
+        return withContext(Dispatchers.IO) {
+            inspectionsRealm.getQuestions(inspectionId)
+        }
     }
 }
