@@ -22,36 +22,29 @@ class InspectionsRepositoryImpl @Inject constructor(
 ) : InspectionsRepository {
 
     override suspend fun getSavedInspections(): List<InspectionItem> {
-        return withContext(Dispatchers.IO) {
-            inspectionsRealm.getInspections()
-        }
+        return inspectionsRealm.getInspections()
     }
 
     override suspend fun startInspection(): List<InspectionItem> {
-        return withContext(Dispatchers.IO) {
-            val response = safeApiCall.apiCall { apiService.start() }
-            inspectionsRealm.insertInspection(response.inspection)
-            Log.w("id", response.inspection.id.toString())
-            listOf(inspectionMapper.mapDataToUi(response))
-        }
+        val response = safeApiCall.apiCall { apiService.start() }
+        inspectionsRealm.insertInspection(response.inspection)
+        Log.w("id", response.inspection.id.toString())
+        return listOf(inspectionMapper.mapDataToUi(response))
     }
 
-    override suspend fun submitInspection(inspectionItem: List<InspectionItem>) {
+    override suspend fun submitInspection(inspectionId: Int, inspectionItem: List<InspectionItem>) {
         withContext(Dispatchers.IO) {
             val body = SubmitBody(inspectionItem)
             safeApiCall.apiCall { apiService.submit(body) }
         }
+        inspectionsRealm.deleteInspection(inspectionId)
     }
 
     override suspend fun updateQuestionAnswer(questionId: Int, answerId: Int): Boolean {
-        //TODO update quiz in db
-        //return true
         return inspectionsRealm.updateInspection(questionId, answerId)
     }
 
     override suspend fun getQuestionsById(inspectionId: Int): List<QuestionItem> {
-        return withContext(Dispatchers.IO) {
-            inspectionsRealm.getQuestions(inspectionId)
-        }
+        return inspectionsRealm.getQuestions(inspectionId)
     }
 }

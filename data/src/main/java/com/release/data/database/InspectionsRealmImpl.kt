@@ -1,5 +1,6 @@
 package com.release.data.database
 
+import android.util.Log
 import com.release.data.database.entity.InspectionsEntity
 import com.release.data.database.entity.QuestionEntity
 import com.release.data.model.Inspection
@@ -53,11 +54,20 @@ class InspectionsRealmImpl @Inject constructor(
 
     override suspend fun updateInspection(questionId: Int, answerId: Int): Boolean {
         dataBase.realm.executeTransactionAwait { realmTransaction ->
-            val questionEntity = realmTransaction.where(QuestionEntity::class.java)
+            realmTransaction.where(QuestionEntity::class.java)
                 .equalTo("id", questionId)
                 .findFirst()?.apply {
                     selectedAnswerChoiceId = answerId
                 }
+        }
+        return true
+    }
+
+    override suspend fun deleteInspection(inspectionId: Int): Boolean {
+        dataBase.realm.executeTransactionAwait { realmTransaction ->
+            realmTransaction.where(InspectionsEntity::class.java)
+                .equalTo("id", inspectionId)
+                .findFirst()?.deleteFromRealm()
         }
         return true
     }

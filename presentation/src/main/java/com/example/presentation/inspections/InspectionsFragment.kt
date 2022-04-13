@@ -47,18 +47,19 @@ class InspectionsFragment : BaseFragment(), ItemClickListener {
         }
 
         viewModel.items.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty()) {
-                binding.rvSavedInspections.visibility = View.VISIBLE
-                binding.btnSubmit.visibility = View.VISIBLE
-                binding.rvSavedInspections.layoutManager = LinearLayoutManager(requireContext())
-                binding.rvSavedInspections.adapter = adapter
-                adapter.submitList(it)
-            }
+            binding.rvSavedInspections.layoutManager = LinearLayoutManager(requireContext())
+            binding.rvSavedInspections.adapter = adapter
+            adapter.submitList(it)
         }
 
-        viewModel.visibility.observe(viewLifecycleOwner) {
+        viewModel.startVisibility.observe(viewLifecycleOwner) {
             binding.tvNoStoredInspections.visibility = it
             binding.btnStart.visibility = it
+        }
+
+        viewModel.submitVisibility.observe(viewLifecycleOwner) {
+            binding.rvSavedInspections.visibility = it
+            binding.btnSubmit.visibility = it
         }
 
         viewModel.showDialog.observeEvent(viewLifecycleOwner) {
