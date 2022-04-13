@@ -1,4 +1,4 @@
-package com.example.presentation
+package com.release.domain
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
