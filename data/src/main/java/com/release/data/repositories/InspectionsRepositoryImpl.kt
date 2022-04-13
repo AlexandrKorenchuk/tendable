@@ -7,6 +7,7 @@ import com.release.data.service.ApiService
 import com.release.data.utils.SafeApiCall
 import com.release.data.utils.mapper.DataUiMapper
 import com.release.domain.model.InspectionItem
+import com.release.domain.model.QuestionItem
 import com.release.domain.repositories.InspectionsRepository
 import javax.inject.Inject
 
@@ -17,7 +18,7 @@ class InspectionsRepositoryImpl @Inject constructor(
     private val inspectionsRealm: InspectionsRealm
 ) : InspectionsRepository {
 
-    override suspend fun getSavedInspectionsQuiz(): List<InspectionItem> {
+    override suspend fun getSavedInspections(): List<InspectionItem> {
         return inspectionsRealm.getInspections()
     }
 
@@ -32,8 +33,12 @@ class InspectionsRepositoryImpl @Inject constructor(
         safeApiCall.apiCall { apiService.submit(body) }
     }
 
-    override suspend fun updateSavedInspectionQuiz(id: Int): Boolean {
+    override suspend fun updateQuestionAnswer(id: Int): Boolean {
         //TODO update quiz in db
         return true
+    }
+
+    override suspend fun getQuestionsById(inspectionId: Int): List<QuestionItem> {
+        return inspectionsRealm.getQuestions(inspectionId)
     }
 }

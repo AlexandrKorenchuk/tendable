@@ -1,14 +1,17 @@
 package com.release.domain.repositories
 
 import com.release.domain.model.InspectionItem
+import com.release.domain.model.QuestionItem
 
 interface InspectionsRepository {
 
-    suspend fun getSavedInspectionsQuiz(): List<InspectionItem>
+    suspend fun getSavedInspections(): List<InspectionItem>
 
     suspend fun startInspection(): List<InspectionItem>
 
     suspend fun submitInspection(inspectionItem: List<InspectionItem>)
 
-    suspend fun updateSavedInspectionQuiz(id: Int): Boolean
+    suspend fun updateQuestionAnswer(id: Int): Boolean
+
+    suspend fun getQuestionsById(inspectionId: Int): List<QuestionItem>
 }

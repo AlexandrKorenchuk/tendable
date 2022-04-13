@@ -5,15 +5,14 @@ import com.release.data.database.InspectionsRealmImpl
 import com.release.data.database.TendableDatabase
 import com.release.data.database.TendableDatabaseImpl
 import com.release.data.database.entity.InspectionsEntity
+import com.release.data.database.entity.QuestionEntity
 import com.release.data.model.Inspection
 import com.release.data.model.StartResponse
 import com.release.data.repositories.AuthRepositoryImpl
 import com.release.data.repositories.InspectionsRepositoryImpl
-import com.release.data.utils.mapper.DataUiMapper
-import com.release.data.utils.mapper.InspectionDbUiMapper
-import com.release.data.utils.mapper.InspectionNetworkDBMapper
-import com.release.data.utils.mapper.InspectionNetworkUIMapper
+import com.release.data.utils.mapper.*
 import com.release.domain.model.InspectionItem
+import com.release.domain.model.QuestionItem
 import com.release.domain.repositories.AuthRepository
 import com.release.domain.repositories.InspectionsRepository
 import dagger.Binds
@@ -33,16 +32,4 @@ abstract class DataModule {
 
     @Binds
     abstract fun provideInspectionMapper(inspectionNetworkUIMapper: InspectionNetworkUIMapper): DataUiMapper<StartResponse, InspectionItem>
-
-    @Binds
-    abstract fun provideTendableDatabase(databaseImpl: TendableDatabaseImpl): TendableDatabase
-
-    @Binds
-    abstract fun provideInspectionsRealm(inspections: InspectionsRealmImpl): InspectionsRealm
-
-    @Binds
-    abstract fun provideInspectionMapperDB(mapperNetwork: InspectionNetworkDBMapper): DataUiMapper<Inspection, InspectionsEntity>
-
-    @Binds
-    abstract fun provideInspectionDbUiMapper(mapperNetwork: InspectionDbUiMapper): DataUiMapper<InspectionsEntity, InspectionItem>
 }

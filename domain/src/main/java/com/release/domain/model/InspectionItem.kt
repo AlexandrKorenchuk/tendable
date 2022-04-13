@@ -1,6 +1,6 @@
 package com.release.domain.model
 
-class InspectionItem(
+data class InspectionItem(
     val id: Int,
     val type: String? = "",
     val area: String? = "",

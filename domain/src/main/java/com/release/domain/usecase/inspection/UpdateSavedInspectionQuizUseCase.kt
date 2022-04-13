@@ -9,7 +9,7 @@ class UpdateSavedInspectionQuizUseCase @Inject constructor(
 ) : UseCase<Boolean, UpdateSavedInspectionQuizUseCase.Params>() {
 
     override suspend fun execute(params: Params): Boolean {
-        return inspectionsRepository.updateSavedInspectionQuiz(params.id)
+        return inspectionsRepository.updateQuestionAnswer(params.id)
     }
 
     data class Params(val id: Int)

@@ -1,15 +1,18 @@
 package com.release.data.database
 
 import com.release.data.database.entity.InspectionsEntity
+import com.release.data.database.entity.QuestionEntity
 import com.release.data.model.Inspection
 import com.release.data.utils.mapper.DataUiMapper
 import com.release.domain.model.InspectionItem
+import com.release.domain.model.QuestionItem
 import io.realm.kotlin.executeTransactionAwait
 import javax.inject.Inject
 
 class InspectionsRealmImpl @Inject constructor(
     private val dataBase: TendableDatabase,
     private val inspectionMapperDB: DataUiMapper<Inspection, InspectionsEntity>,
+    private val questionDbUiMapper: DataUiMapper<QuestionEntity, QuestionItem>,
     private val inspectionDbUiMapper: DataUiMapper<InspectionsEntity, InspectionItem>
 ) : InspectionsRealm {
 
@@ -23,6 +26,22 @@ class InspectionsRealmImpl @Inject constructor(
             )
         }
         return inspections
+    }
+
+    override suspend fun getQuestions(inspectionId: Int): List<QuestionItem> {
+        val questions = arrayListOf<QuestionItem>()
+        dataBase.realm.executeTransactionAwait { realmTransaction ->
+            questions.addAll(
+                realmTransaction.where(InspectionsEntity::class.java)
+                    .equalTo("id", inspectionId)
+                    .findFirst()
+                    ?.questions
+                    ?.map {
+                        questionDbUiMapper.mapDataToUi(it)
+                    } ?: listOf()
+            )
+        }
+        return questions
     }
 
     override suspend fun insertInspection(inspection: Inspection) {

@@ -1,7 +1,6 @@
 package com.release.domain.usecase.inspection
 
 import com.release.domain.model.InspectionItem
-import com.release.domain.repositories.AuthRepository
 import com.release.domain.repositories.InspectionsRepository
 import com.release.domain.usecase.None
 import com.release.domain.usecase.UseCase
@@ -12,6 +11,6 @@ class GetSavedInspectionUseCase @Inject constructor(
 ) : UseCase<List<InspectionItem>, None>() {
 
     override suspend fun execute(params: None) : List<InspectionItem> {
-        return inspectionsRepository.getSavedInspectionsQuiz()
+        return inspectionsRepository.getSavedInspections()
     }
 }
