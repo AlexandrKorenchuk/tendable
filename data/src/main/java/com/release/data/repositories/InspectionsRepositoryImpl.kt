@@ -35,8 +35,8 @@ class InspectionsRepositoryImpl @Inject constructor(
             val inspectionDB = inspectionsRealm.getInspection(inspectionId)
             val body = SubmitBody(inspectionDB!!)
             safeApiCall.apiCall { apiService.submit(body) }
+            inspectionsRealm.deleteInspection(inspectionId)
         }
-        inspectionsRealm.deleteInspection(inspectionId)
     }
 
     override suspend fun updateQuestionAnswer(questionId: Int, answerId: Int): Boolean {
