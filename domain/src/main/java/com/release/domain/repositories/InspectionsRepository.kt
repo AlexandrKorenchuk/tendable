@@ -11,7 +11,7 @@ interface InspectionsRepository {
 
     suspend fun submitInspection(inspectionItem: List<InspectionItem>)
 
-    suspend fun updateQuestionAnswer(id: Int): Boolean
+    suspend fun updateQuestionAnswer(questionId: Int, answerId: Int): Boolean
 
     suspend fun getQuestionsById(inspectionId: Int): List<QuestionItem>
 }

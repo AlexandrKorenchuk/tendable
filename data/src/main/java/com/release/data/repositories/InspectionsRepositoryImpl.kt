@@ -43,9 +43,10 @@ class InspectionsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun updateQuestionAnswer(id: Int): Boolean {
+    override suspend fun updateQuestionAnswer(questionId: Int, answerId: Int): Boolean {
         //TODO update quiz in db
-        return true
+        //return true
+        return inspectionsRealm.updateInspection(questionId, answerId)
     }
 
     override suspend fun getQuestionsById(inspectionId: Int): List<QuestionItem> {

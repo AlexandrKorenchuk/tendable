@@ -1,6 +1,7 @@
 package com.example.presentation.questions
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,17 +13,18 @@ import com.example.core_ui.presentation.BaseFragment
 import com.example.core_ui.presentation.observeEvent
 import com.example.presentation.databinding.FragmentQuestionsBinding
 import com.example.presentation.questions.adapter.QuestionsAdapter
+import com.example.presentation.questions.adapter.RadioButtonClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class QuestionsFragment : BaseFragment() {
+class QuestionsFragment : BaseFragment(), RadioButtonClickListener {
 
     private var _binding: FragmentQuestionsBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: QuestionsViewModel by viewModels()
 
-    private val adapter = QuestionsAdapter()
+    private val adapter = QuestionsAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +41,7 @@ class QuestionsFragment : BaseFragment() {
         binding.rvQuestions.adapter = adapter
 
         viewModel.items.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
+          Log.w("questions", it.toString())
             adapter.submitList(it)
         }
 
@@ -55,5 +57,9 @@ class QuestionsFragment : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onRadioButtonClicked(questionId: Int, answerId: Int) {
+        viewModel.onRadioButtonSelected(questionId, answerId)
     }
 }

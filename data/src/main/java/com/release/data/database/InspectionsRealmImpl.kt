@@ -50,4 +50,15 @@ class InspectionsRealmImpl @Inject constructor(
             realmTransaction.insertOrUpdate(entity)
         }
     }
+
+    override suspend fun updateInspection(questionId: Int, answerId: Int): Boolean {
+        dataBase.realm.executeTransactionAwait { realmTransaction ->
+            val questionEntity = realmTransaction.where(QuestionEntity::class.java)
+                .equalTo("id", questionId)
+                .findFirst()?.apply {
+                    selectedAnswerChoiceId = answerId
+                }
+        }
+        return true
+    }
 }
