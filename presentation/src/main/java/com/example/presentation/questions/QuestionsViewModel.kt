@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.utilis.ShowDialog
+import com.example.presentation.R
 import com.release.core_ui.presentation.BaseViewModel
 import com.release.core_ui.utilis.Event
+import com.release.core_ui.utilis.ResourceManager
 import com.release.domain.model.InspectionItem
 import com.release.domain.model.QuestionItem
 import com.release.domain.usecase.inspection.GetQuestionsUseCase
@@ -21,7 +23,8 @@ import javax.inject.Inject
 class QuestionsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     val getQuestionsUseCase: GetQuestionsUseCase,
-    val updateSavedInspectionQuizUseCase: UpdateSavedInspectionQuizUseCase
+    val updateSavedInspectionQuizUseCase: UpdateSavedInspectionQuizUseCase,
+    val resourceManager: ResourceManager
 ) : BaseViewModel() {
 
     private val _items = MutableLiveData<List<QuestionItem>>()
@@ -30,7 +33,6 @@ class QuestionsViewModel @Inject constructor(
 
     init {
         val inspectionId: Int? = savedStateHandle.get<Int>("bundle")
-        Log.w("inspectionId", inspectionId.toString())
         viewModelScope.launch(handler) {
             try {
                 if (inspectionId != null) {
@@ -39,7 +41,7 @@ class QuestionsViewModel @Inject constructor(
                     _items.value = questions
                 } else {
                     _showDialog.value =
-                        Event(ShowDialog.ExceptionDialog("Couldn't show questions!"))
+                        Event(ShowDialog.ExceptionDialog(resourceManager.getString(R.string.couldnt_show_questions)))
                 }
             } catch (e: AppException) {
                 catchUseCaseException(e)
@@ -50,7 +52,12 @@ class QuestionsViewModel @Inject constructor(
     fun onRadioButtonSelected(questionId: Int, answerId: Int) {
         viewModelScope.launch(handler) {
             try {
-                updateSavedInspectionQuizUseCase.execute(UpdateSavedInspectionQuizUseCase.Params(questionId, answerId))
+                updateSavedInspectionQuizUseCase.execute(
+                    UpdateSavedInspectionQuizUseCase.Params(
+                        questionId,
+                        answerId
+                    )
+                )
             } catch (e: AppException) {
                 catchUseCaseException(e)
             }
