@@ -24,24 +24,24 @@ data class InspectionType(
 
 data class Survey(
     val id: Int,
-    val categories: Categories
+    val categories: List<Categories>
 )
 
 data class Categories(
     val id: Int,
     val name: String,
-    val questions: Questions
+    val questions: List<Questions>
 )
 
 data class Questions(
     val id: Int,
     val name: String,
     val selectedAnswerChoiceId: Int?,
-    val answerChoices: AnswerChoices
+    val answerChoices: List<AnswerChoices>
 )
 
 data class AnswerChoices(
     val id: Int,
     val name: String,
-    val score: Int
+    val score: Double
 )

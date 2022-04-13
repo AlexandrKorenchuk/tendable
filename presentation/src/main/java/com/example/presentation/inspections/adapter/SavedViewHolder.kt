@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemInspectionBinding
 import com.example.presentation.utils.BaseViewHolder
-import com.release.domain.model.InspectionQuizItem
+import com.release.domain.model.InspectionItem
 
 class SavedViewHolder(
     parent: ViewGroup,
@@ -13,9 +13,9 @@ class SavedViewHolder(
 
     private val viewBinding = ItemInspectionBinding.bind(itemView)
 
-    private lateinit var inspectionItems: InspectionQuizItem
+    private lateinit var inspectionItems: InspectionItem
 
-    fun bind(inspectionItems: InspectionQuizItem) {
+    fun bind(inspectionItems: InspectionItem) {
         this.inspectionItems = inspectionItems
         viewBinding.tvAreaValue.text = inspectionItems.area
         viewBinding.tvTypeValue.text = inspectionItems.type
