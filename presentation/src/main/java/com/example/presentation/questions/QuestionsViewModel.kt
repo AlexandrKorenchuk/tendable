@@ -11,6 +11,7 @@ import com.release.core_ui.utilis.Event
 import com.release.domain.model.InspectionItem
 import com.release.domain.model.QuestionItem
 import com.release.domain.usecase.inspection.GetQuestionsUseCase
+import com.release.domain.usecase.inspection.UpdateSavedInspectionQuizUseCase
 import com.release.domain.utils.AppException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class QuestionsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    val getQuestionsUseCase: GetQuestionsUseCase
+    val getQuestionsUseCase: GetQuestionsUseCase,
+    val updateSavedInspectionQuizUseCase: UpdateSavedInspectionQuizUseCase
 ) : BaseViewModel() {
 
     private val _items = MutableLiveData<List<QuestionItem>>()
@@ -39,6 +41,16 @@ class QuestionsViewModel @Inject constructor(
                     _showDialog.value =
                         Event(ShowDialog.ExceptionDialog("Couldn't show questions!"))
                 }
+            } catch (e: AppException) {
+                catchUseCaseException(e)
+            }
+        }
+    }
+
+    fun onRadioButtonSelected(questionId: Int, answerId: Int) {
+        viewModelScope.launch(handler) {
+            try {
+                updateSavedInspectionQuizUseCase.execute(UpdateSavedInspectionQuizUseCase.Params(questionId, answerId))
             } catch (e: AppException) {
                 catchUseCaseException(e)
             }

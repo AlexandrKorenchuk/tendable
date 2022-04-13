@@ -1,5 +1,7 @@
 package com.release.data.database
 
+import android.util.Log
+import com.release.data.database.entity.AnswerEntity
 import com.release.data.database.entity.InspectionsEntity
 import com.release.data.database.entity.QuestionEntity
 import com.release.data.model.Inspection
@@ -49,5 +51,13 @@ class InspectionsRealmImpl @Inject constructor(
             val entity = inspectionMapperDB.mapDataToUi(inspection)
             realmTransaction.insertOrUpdate(entity)
         }
+    }
+
+    override suspend fun updateInspection(questionId: Int, answerId: Int): Boolean {
+        dataBase.realm.executeTransactionAwait { realmTransaction ->
+           val questionEntity = realmTransaction.where(QuestionEntity::class.java)
+                .equalTo("id", questionId)
+        }
+        return true
     }
 }
