@@ -1,6 +1,5 @@
 package com.example.presentation.questions
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -10,7 +9,6 @@ import com.example.presentation.R
 import com.release.core_ui.presentation.BaseViewModel
 import com.release.core_ui.utilis.Event
 import com.release.core_ui.utilis.ResourceManager
-import com.release.domain.model.InspectionItem
 import com.release.domain.model.QuestionItem
 import com.release.domain.usecase.inspection.GetQuestionsUseCase
 import com.release.domain.usecase.inspection.UpdateSavedInspectionQuizUseCase

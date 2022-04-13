@@ -1,6 +1,5 @@
 package com.release.data.repositories
 
-import android.util.Log
 import com.release.data.database.InspectionsRealm
 import com.release.data.model.StartResponse
 import com.release.data.model.SubmitBody
@@ -22,7 +21,7 @@ class InspectionsRepositoryImpl @Inject constructor(
 ) : InspectionsRepository {
 
     override suspend fun getSavedInspections(): List<InspectionItem> {
-        return inspectionsRealm.getInspections()
+        return inspectionsRealm.getInspectionItems()
     }
 
     override suspend fun startInspection(): List<InspectionItem> {

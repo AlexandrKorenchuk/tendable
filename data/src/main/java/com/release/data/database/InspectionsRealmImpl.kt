@@ -1,6 +1,5 @@
 package com.release.data.database
 
-import android.util.Log
 import com.release.data.database.entity.InspectionsEntity
 import com.release.data.database.entity.QuestionEntity
 import com.release.data.model.Inspection
