@@ -35,9 +35,13 @@ class InspectionsViewModel @Inject constructor(
     val items: LiveData<List<InspectionItem>>
         get() = _items
 
-    private val _visibility = MutableLiveData<Int>()
-    val visibility: LiveData<Int>
-        get() = _visibility
+    private val _startVisibility = MutableLiveData<Int>()
+    val startVisibility: LiveData<Int>
+        get() = _startVisibility
+
+    private val _submitVisibility = MutableLiveData<Int>()
+    val submitVisibility: LiveData<Int>
+        get() = _submitVisibility
 
     init {
         onGetSavedData()
@@ -46,13 +50,14 @@ class InspectionsViewModel @Inject constructor(
     private fun onGetSavedData() {
         viewModelScope.launch(handler) {
             try {
-
                 val inspectionsUseCase = getSavedInspectionsUseCase.execute(None)
                 _items.value = inspectionsUseCase
-                if(inspectionsUseCase.isNotEmpty()){
-                    _visibility.value = View.GONE
+                if (inspectionsUseCase.isNotEmpty()) {
+                    _startVisibility.value = View.GONE
+                    _submitVisibility.value = View.VISIBLE
                 } else {
-                    _visibility.value = View.VISIBLE
+                    _startVisibility.value = View.VISIBLE
+                    _submitVisibility.value = View.GONE
                 }
             } catch (e: AppException) {
                 catchUseCaseException(e)
@@ -66,9 +71,11 @@ class InspectionsViewModel @Inject constructor(
             if (request.await().isNotEmpty()) {
                 val inspectionsUseCase = getSavedInspectionsUseCase.execute(None)
                 _items.value = inspectionsUseCase
-                _visibility.value = View.GONE
+                _startVisibility.value = View.GONE
+                _submitVisibility.value = View.VISIBLE
             } else {
-                _visibility.value = View.VISIBLE
+                _startVisibility.value = View.VISIBLE
+                _submitVisibility.value = View.GONE
             }
         }
     }
@@ -78,9 +85,15 @@ class InspectionsViewModel @Inject constructor(
             try {
                 val submitItems = items.value
                 if (submitItems != null) {
-                    submitInspectionUseCase.execute(SubmitInspectionUseCase.Params(submitItems))
+                    submitInspectionUseCase.execute(
+                        SubmitInspectionUseCase.Params(
+                            submitItems[0].id,
+                            submitItems
+                        )
+                    )
                     _showDialog.value = Event(ShowDialog.SuccessDialog("successfully submitted"))
-                    _visibility.value = View.VISIBLE
+                    _submitVisibility.value = View.GONE
+                    _startVisibility.value = View.VISIBLE
                 }
             } catch (e: AppException) {
                 catchException(e)

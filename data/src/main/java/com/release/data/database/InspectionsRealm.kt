@@ -9,4 +9,5 @@ interface InspectionsRealm {
     suspend fun getQuestions(inspectionId: Int): List<QuestionItem>
     suspend fun insertInspection(inspection: Inspection)
     suspend fun updateInspection(questionId: Int, answerId: Int): Boolean
+    suspend fun deleteInspection(inspectionId: Int): Boolean
 }
