@@ -4,7 +4,7 @@ import com.release.domain.repositories.AuthRepository
 import com.release.domain.usecase.UseCase
 import javax.inject.Inject
 
-class LogInUseCase @Inject constructor(
+open class LogInUseCase @Inject constructor(
     private val authRepository: AuthRepository
 ) : UseCase<Unit, LogInUseCase.Params>() {
 

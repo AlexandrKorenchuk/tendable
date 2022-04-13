@@ -63,4 +63,6 @@ dependencies {
     implementation navComp.values()
 
     implementation coroutines.values()
+
+    testImplementation unitTests.values()
 }

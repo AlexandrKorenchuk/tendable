@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    val logInUseCase: LogInUseCase
+    private val logInUseCase: LogInUseCase
 ) : BaseViewModel() {
 
     fun onLoginButtonClicked(email: String, password: String) {

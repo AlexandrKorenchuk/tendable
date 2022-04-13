@@ -39,4 +39,6 @@ dependencies {
     implementation google.values()
 
     implementation navComp.values()
+
+    testImplementation unitTests.values()
 }

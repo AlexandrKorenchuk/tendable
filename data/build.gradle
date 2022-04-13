@@ -38,4 +38,6 @@ dependencies {
     implementation network.values()
 
     implementation coroutines.values()
+
+    testImplementation unitTests.values()
 }
