@@ -1,5 +1,5 @@
 package com.example.presentation.questions.adapter
 
-interface RadioButtonClickListener {
+interface RadioButtonClickListener { 
     fun onRadioButtonClicked(questionId: Int, answerId: Int)
 }
