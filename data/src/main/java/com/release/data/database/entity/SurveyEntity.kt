@@ -1,5 +1,8 @@
 package com.release.data.database.entity
 
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
+
 open class SurveyEntity(
-    var id: Int
-)
+    @PrimaryKey var id: Int = 0
+) : RealmObject()

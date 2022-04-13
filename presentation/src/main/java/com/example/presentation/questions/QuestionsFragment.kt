@@ -34,8 +34,8 @@ class QuestionsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.rvQuizInspections.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvQuizInspections.adapter = adapter
+        binding.rvQuestions.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvQuestions.adapter = adapter
 
         viewModel.items.observe(viewLifecycleOwner) {
             adapter.submitList(it)

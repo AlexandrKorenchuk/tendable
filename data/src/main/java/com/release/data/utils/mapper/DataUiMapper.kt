@@ -1,9 +1,9 @@
 package com.release.data.utils.mapper
 
-interface NetworkUiMapper<NT, UI> {
+interface DataUiMapper<D, UI> {
 
-    fun mapNetworkToUi(networkEntity: NT): UI
+    fun mapDataToUi(dataEntity: D): UI
 
-    fun mapUiToNetwork(uiEntity: UI): NT =
+    fun mapUiToData(uiEntity: UI): D =
         throw NotImplementedError("Mapping UI to network not implemented in ${javaClass.simpleName}.")
 }

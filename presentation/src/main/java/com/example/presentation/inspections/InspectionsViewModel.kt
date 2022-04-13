@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.utilis.NavigationEvent
+import com.example.core_ui.utilis.ShowDialog
 import com.example.presentation.R
 import com.release.core_ui.presentation.BaseViewModel
 import com.release.core_ui.utilis.Event
-import com.example.core_ui.utilis.ShowDialog
 import com.release.domain.model.InspectionItem
 import com.release.domain.usecase.None
 import com.release.domain.usecase.auth.LogOutUseCase
@@ -32,6 +32,10 @@ class InspectionsViewModel @Inject constructor(
         get() = _items
 
     init {
+        onGetSavedData()
+    }
+
+    private fun onGetSavedData() {
         viewModelScope.launch(handler) {
             try {
                 val inspectionsUseCase = getSavedInspectionsUseCase.execute(None)
