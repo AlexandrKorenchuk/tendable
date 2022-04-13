@@ -24,6 +24,10 @@ ext {
     junitext = '1.1.3'
     espressoCore = '3.4.0'
     Junit = '4.+'
+    mockitoVersion = '4.2.0'
+    mockitoKotlin = '2.2.0'
+    coroutinesTest = '1.3.4'
+    coreTestVersion = '2.0.0'
 
     kapt = [
             hildCompiler     : "com.google.dagger:hilt-android-compiler:$hilt"
@@ -63,7 +67,14 @@ ext {
             navCompUI         : "androidx.navigation:navigation-ui-ktx:$navComp"
     ]
 
-    junit = "junit:junit:$Junit"
+    unitTests = [
+            junit             : "junit:junit:$Junit",
+            mockito           : "org.mockito:mockito-core:$mockitoVersion",
+            mockitoKotlin     : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlin",
+            coroutinesTests   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTest",
+            coreTests         : "androidx.arch.core:core-testing:$coreTestVersion"
+    ]
+
     junitExt = "androidx.test.ext:junit:$junitext"
     esspresso = "androidx.test.espresso:espresso-core:$espressoCore"
 }

@@ -28,4 +28,6 @@ dependencies {
     implementation coroutines.values()
 
     implementation daggerHilt.values()
+
+    testImplementation unitTests.values()
 }

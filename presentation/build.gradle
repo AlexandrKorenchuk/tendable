@@ -41,6 +41,10 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -60,4 +64,8 @@ dependencies {
     implementation navComp.values()
 
     implementation coroutines.values()
+
+    testImplementation unitTests.values()
+
+    testImplementation "org.mockito:mockito-core:4.2.0"
 }

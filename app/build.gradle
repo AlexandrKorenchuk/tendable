@@ -69,4 +69,6 @@ dependencies {
     implementation navComp.values()
 
     implementation daggerHilt.values()
+
+    testImplementation unitTests.values()
 }
