@@ -28,7 +28,6 @@ class InspectionsRepositoryImpl @Inject constructor(
     override suspend fun startInspection(): List<InspectionItem> {
         val response = safeApiCall.apiCall { apiService.start() }
         inspectionsRealm.insertInspection(response.inspection)
-        Log.w("id", response.inspection.id.toString())
         return listOf(inspectionMapper.mapDataToUi(response))
     }
 

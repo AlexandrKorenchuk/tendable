@@ -10,6 +10,7 @@ import com.example.core_ui.utilis.ShowDialog
 import com.example.presentation.R
 import com.release.core_ui.presentation.BaseViewModel
 import com.release.core_ui.utilis.Event
+import com.release.core_ui.utilis.ResourceManager
 import com.release.domain.model.InspectionItem
 import com.release.domain.usecase.None
 import com.release.domain.usecase.auth.LogOutUseCase
@@ -28,7 +29,8 @@ class InspectionsViewModel @Inject constructor(
     val logOutUseCase: LogOutUseCase,
     val getSavedInspectionsUseCase: GetSavedInspectionUseCase,
     val submitInspectionUseCase: SubmitInspectionUseCase,
-    val requestStartInspectionUseCase: StartInspectionUseCase
+    val requestStartInspectionUseCase: StartInspectionUseCase,
+    val resourceManager: ResourceManager
 ) : BaseViewModel() {
 
     private val _items = MutableLiveData<List<InspectionItem>>()
@@ -91,7 +93,8 @@ class InspectionsViewModel @Inject constructor(
                             submitItems
                         )
                     )
-                    _showDialog.value = Event(ShowDialog.SuccessDialog("successfully submitted"))
+                    _showDialog.value =
+                        Event(ShowDialog.SuccessDialog(resourceManager.getString(R.string.successully_submitted)))
                     _submitVisibility.value = View.GONE
                     _startVisibility.value = View.VISIBLE
                 }
