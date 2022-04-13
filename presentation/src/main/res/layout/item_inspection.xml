@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/background_card">
+
+    <TextView
+        android:id="@+id/tv_type"
+        style="@style/Tendable.TextView.Subtitle.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barier"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="tv_type,tv_area, tv_access" />
+
+    <TextView
+        android:id="@+id/tv_type_value"
+        style="@style/Tendable.TextView.Subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/barier"
+        app:layout_constraintTop_toTopOf="@id/tv_type"
+        tools:text="Clinic" />
+
+    <TextView
+        android:id="@+id/tv_area"
+        style="@style/Tendable.TextView.Subtitle.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/area"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_type_value" />
+
+    <TextView
+        android:id="@+id/tv_area_value"
+        style="@style/Tendable.TextView.Subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/barier"
+        app:layout_constraintTop_toTopOf="@id/tv_area"
+        tools:text="Emergency" />
+
+    <TextView
+        android:id="@+id/tv_access"
+        style="@style/Tendable.TextView.Subtitle.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/access"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_area_value" />
+
+    <TextView
+        android:id="@+id/tv_access_value"
+        style="@style/Tendable.TextView.Subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/barier"
+        app:layout_constraintTop_toTopOf="@id/tv_access"
+        tools:text="Write" />
+
+    <TextView
+        android:id="@+id/tv_continue"
+        style="@style/Tendable.TextView.Subtitle.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/continue_inspection"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_access_value" />
+</androidx.constraintlayout.widget.ConstraintLayout>
