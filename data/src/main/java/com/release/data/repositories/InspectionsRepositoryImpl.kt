@@ -31,9 +31,10 @@ class InspectionsRepositoryImpl @Inject constructor(
         return listOf(inspectionMapper.mapDataToUi(response))
     }
 
-    override suspend fun submitInspection(inspectionId: Int, inspectionItem: List<InspectionItem>) {
+    override suspend fun submitInspection(inspectionId: Int) {
         withContext(Dispatchers.IO) {
-            val body = SubmitBody(inspectionItem)
+            val inspectionDB = inspectionsRealm.getInspection(inspectionId)
+            val body = SubmitBody(inspectionDB!!)
             safeApiCall.apiCall { apiService.submit(body) }
         }
         inspectionsRealm.deleteInspection(inspectionId)

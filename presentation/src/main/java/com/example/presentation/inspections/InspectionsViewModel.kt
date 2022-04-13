@@ -1,7 +1,6 @@
 package com.example.presentation.inspections
 
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -20,7 +19,6 @@ import com.release.domain.usecase.inspection.SubmitInspectionUseCase
 import com.release.domain.utils.AppException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -87,12 +85,7 @@ class InspectionsViewModel @Inject constructor(
             try {
                 val submitItems = items.value
                 if (submitItems != null) {
-                    submitInspectionUseCase.execute(
-                        SubmitInspectionUseCase.Params(
-                            submitItems[0].id,
-                            submitItems
-                        )
-                    )
+                    submitInspectionUseCase.execute(SubmitInspectionUseCase.Params(submitItems.first().id))
                     _showDialog.value =
                         Event(ShowDialog.SuccessDialog(resourceManager.getString(R.string.successully_submitted)))
                     _submitVisibility.value = View.GONE

@@ -9,5 +9,5 @@ open class QuestionEntity(
     var name: String = "",
     var selectedAnswerChoiceId: Int? = null,
     var answerChoices: RealmList<AnswerEntity> = RealmList(),
-    var category: CategoryEntity? = null
+    var category: CategoryEntity? = null,
 ) : RealmObject()

@@ -5,6 +5,5 @@ import io.realm.annotations.PrimaryKey
 
 open class CategoryEntity(
     @PrimaryKey var id: Int = 0,
-    var name: String = "",
-    var survey: SurveyEntity? = null
+    var name: String = ""
 ) : RealmObject()

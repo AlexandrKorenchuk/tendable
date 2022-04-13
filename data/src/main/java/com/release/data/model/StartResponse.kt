@@ -30,7 +30,7 @@ data class Survey(
 data class Categories(
     val id: Int,
     val name: String,
-    val questions: List<Questions>
+    val questions: ArrayList<Questions>
 )
 
 data class Questions(
