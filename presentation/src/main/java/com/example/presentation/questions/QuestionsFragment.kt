@@ -61,6 +61,5 @@ class QuestionsFragment : BaseFragment(), RadioButtonClickListener {
 
     override fun onRadioButtonClicked(questionId: Int, answerId: Int) {
         viewModel.onRadioButtonSelected(questionId, answerId)
-        Toast.makeText(requireContext(), answerId.toString(), Toast.LENGTH_LONG).show()
     }
 }
