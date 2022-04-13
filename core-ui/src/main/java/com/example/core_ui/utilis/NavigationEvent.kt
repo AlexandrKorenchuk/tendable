@@ -8,7 +8,7 @@ sealed class NavigationEvent {
 
     data class ForwardWithBundle(
         val navigate: Int,
-        val from: String
+        val bundle: Int
     ) : NavigationEvent()
 
     data class ForwardWithPopUp(

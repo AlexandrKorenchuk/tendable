@@ -1,5 +1,7 @@
 package com.example.presentation.inspections
 
+import android.view.View
+import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -16,6 +18,8 @@ import com.release.domain.usecase.inspection.StartInspectionUseCase
 import com.release.domain.usecase.inspection.SubmitInspectionUseCase
 import com.release.domain.utils.AppException
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,6 +35,10 @@ class InspectionsViewModel @Inject constructor(
     val items: LiveData<List<InspectionItem>>
         get() = _items
 
+    private val _visibility = MutableLiveData<Int>()
+    val visibility: LiveData<Int>
+        get() = _visibility
+
     init {
         onGetSavedData()
     }
@@ -38,8 +46,14 @@ class InspectionsViewModel @Inject constructor(
     private fun onGetSavedData() {
         viewModelScope.launch(handler) {
             try {
+
                 val inspectionsUseCase = getSavedInspectionsUseCase.execute(None)
                 _items.value = inspectionsUseCase
+                if(inspectionsUseCase.isNotEmpty()){
+                    _visibility.value = View.GONE
+                } else {
+                    _visibility.value = View.VISIBLE
+                }
             } catch (e: AppException) {
                 catchUseCaseException(e)
             }
@@ -48,12 +62,13 @@ class InspectionsViewModel @Inject constructor(
 
     fun onStartButtonClicked() {
         viewModelScope.launch(handler) {
-            try {
-                requestStartInspectionUseCase.execute(None)
-                _navigationEvent.value =
-                    Event(NavigationEvent.Forward(R.id.action_savedInspectionFragment_to_inspectionQuizFragment))
-            } catch (e: AppException) {
-                catchException(e)
+            val request = async { requestStartInspectionUseCase.execute(None) }
+            if (request.await().isNotEmpty()) {
+                val inspectionsUseCase = getSavedInspectionsUseCase.execute(None)
+                _items.value = inspectionsUseCase
+                _visibility.value = View.GONE
+            } else {
+                _visibility.value = View.VISIBLE
             }
         }
     }
@@ -65,6 +80,7 @@ class InspectionsViewModel @Inject constructor(
                 if (submitItems != null) {
                     submitInspectionUseCase.execute(SubmitInspectionUseCase.Params(submitItems))
                     _showDialog.value = Event(ShowDialog.SuccessDialog("successfully submitted"))
+                    _visibility.value = View.VISIBLE
                 }
             } catch (e: AppException) {
                 catchException(e)
@@ -73,10 +89,12 @@ class InspectionsViewModel @Inject constructor(
     }
 
     fun onContinueButtonClicked(id: Int) {
-        //TODO here get data from database by id
-        // it's just for now
-        _navigationEvent.value =
-            Event(NavigationEvent.Forward(R.id.action_savedInspectionFragment_to_inspectionQuizFragment))
+        _navigationEvent.value = Event(
+            NavigationEvent.ForwardWithBundle(
+                R.id.action_savedInspectionFragment_to_inspectionQuizFragment,
+                id
+            )
+        )
     }
 
     fun onLogoutButtonClicked() {
