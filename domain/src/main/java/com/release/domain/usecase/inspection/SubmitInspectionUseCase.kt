@@ -11,8 +11,8 @@ class SubmitInspectionUseCase @Inject constructor(
 ) : UseCase<Unit, SubmitInspectionUseCase.Params>() {
 
     override suspend fun execute(params: Params) {
-        inspectionsRepository.submitInspection(params.inspectionItem)
+        inspectionsRepository.submitInspection(params.inspectionId)
     }
 
-    data class Params(val inspectionItem: List<InspectionItem>)
+    data class Params(val inspectionId: Int)
 }

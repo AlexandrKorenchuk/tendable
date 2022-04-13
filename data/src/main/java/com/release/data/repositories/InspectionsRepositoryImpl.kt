@@ -23,7 +23,7 @@ class InspectionsRepositoryImpl @Inject constructor(
 
     override suspend fun getSavedInspections(): List<InspectionItem> {
         return withContext(Dispatchers.IO) {
-            inspectionsRealm.getInspections()
+            inspectionsRealm.getInspectionItems()
         }
     }
 
@@ -36,17 +36,18 @@ class InspectionsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun submitInspection(inspectionItem: List<InspectionItem>) {
+    override suspend fun submitInspection(inspectionId: Int) {
         withContext(Dispatchers.IO) {
-            val body = SubmitBody(inspectionItem)
+            val inspectionDB = inspectionsRealm.getInspection(inspectionId)
+            val body = SubmitBody(inspectionDB!!)
             safeApiCall.apiCall { apiService.submit(body) }
         }
     }
 
     override suspend fun updateQuestionAnswer(questionId: Int, answerId: Int): Boolean {
-        //TODO update quiz in db
-        //return true
-        return inspectionsRealm.updateInspection(questionId, answerId)
+        return withContext(Dispatchers.IO) {
+            inspectionsRealm.updateInspection(questionId, answerId)
+        }
     }
 
     override suspend fun getQuestionsById(inspectionId: Int): List<QuestionItem> {

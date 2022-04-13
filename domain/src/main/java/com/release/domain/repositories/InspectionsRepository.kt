@@ -9,7 +9,7 @@ interface InspectionsRepository {
 
     suspend fun startInspection(): List<InspectionItem>
 
-    suspend fun submitInspection(inspectionItem: List<InspectionItem>)
+    suspend fun submitInspection(inspectionId: Int)
 
     suspend fun updateQuestionAnswer(questionId: Int, answerId: Int): Boolean
 

@@ -16,7 +16,7 @@ class InspectionsRealmImpl @Inject constructor(
     private val inspectionDbUiMapper: DataUiMapper<InspectionsEntity, InspectionItem>
 ) : InspectionsRealm {
 
-    override suspend fun getInspections(): List<InspectionItem> {
+    override suspend fun getInspectionItems(): List<InspectionItem> {
         val inspections = arrayListOf<InspectionItem>()
         dataBase.realm.executeTransactionAwait { realmTransaction ->
             inspections.addAll(
@@ -53,12 +53,24 @@ class InspectionsRealmImpl @Inject constructor(
 
     override suspend fun updateInspection(questionId: Int, answerId: Int): Boolean {
         dataBase.realm.executeTransactionAwait { realmTransaction ->
-            val questionEntity = realmTransaction.where(QuestionEntity::class.java)
+            realmTransaction.where(QuestionEntity::class.java)
                 .equalTo("id", questionId)
                 .findFirst()?.apply {
                     selectedAnswerChoiceId = answerId
                 }
         }
         return true
+    }
+
+    override suspend fun getInspection(inspectionId: Int): Inspection? {
+        var inspection: Inspection? = null
+        dataBase.realm.executeTransactionAwait { realmTransaction ->
+            val inspectionsEntity = realmTransaction.where(InspectionsEntity::class.java)
+                .equalTo("id", inspectionId)
+                .findFirst()
+            if (inspectionsEntity != null)
+                inspection = inspectionMapperDB.mapUiToData(inspectionsEntity)
+        }
+        return inspection
     }
 }
